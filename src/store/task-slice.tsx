@@ -1,4 +1,5 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, nanoid,     } from "@reduxjs/toolkit";
  
 interface Task {
     id: string;
@@ -19,19 +20,19 @@ const taskSLice = createSlice({
     } as TaskState,
     reducers: {
         addTask: {
-            reducer: (state, action) => {
+            reducer: (state, action: PayloadAction<Task>) => {
                 state.tasks.push(action.payload);
             },
-            prepare: (title: string,) => {
+            prepare: (title: string) => {
                 return {
                     payload: {
                         id: nanoid(),
                         title,
-                        status:'pending'
-                    }
+                        status: 'pending'
+                    } as Task
                 }
             }
-        }, 
+        },
         removeTask : (state, action) =>{
             state.tasks = state.tasks.filter(task => task.id !== action.payload);
         }, 

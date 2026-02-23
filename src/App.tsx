@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import './App.css'
+ import './App.css'
 import Task from './component/task'
 import Filters from './component/filters'
 import { Provider } from 'react-redux'
